@@ -56,6 +56,9 @@ RUN cd /home/mangos/db/ && \
     echo "" && \
     echo "" && \
     echo "" && \
-    echo "mangos" 
+    echo "mangos" && \
+    echo "" && \
+    echo "" && \
+    echo ""
     
 CMD ["bash"]
