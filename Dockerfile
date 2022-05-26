@@ -27,4 +27,8 @@ RUN apt update && apt upgrade -y && \
     
     cd /home/mangos/sources && \
     git clone https://github.com/mangosthree/server.git . --recursive --depth=1
+
+EXPOSE 80
+USER mangos
+RUN ["/bin/bash"]
     
