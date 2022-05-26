@@ -42,7 +42,8 @@ RUN cd /home/mangos/build && \
 USER root
 RUN cd /home/mangos/build && \
     make install
-RUN apt install mysql-server && \
+RUN apt install mysql-server -y && \
+    service mysql start && \    
     mysql && \
     echo "CREATE USER 'mangos'@'localhost' IDENTIFIED BY 'mangos';" && \
     echo "GRANT ALL PRIVILEGES ON *.* TO 'mangos'@'localhost' WITH GRANT OPTION;" && \
