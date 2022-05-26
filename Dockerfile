@@ -1,4 +1,4 @@
-FROM corallab/ubuntu:18.04-clang-7-cmake-3.12-ninja-1.8.2 as builder
+FROM celiangarcia/gcc7-cmake as builder
 ARG MANGOS_SERVER_VERSION=master
 ARG THREAD_COUNT="-j8"
 
