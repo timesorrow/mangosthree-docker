@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:18.04
 ARG MANGOS_SERVER_VERSION=master
 ARG THREAD_COUNT="-j8"
 
