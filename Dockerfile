@@ -2,10 +2,11 @@ FROM ubuntu:18.04
 ARG MANGOS_SERVER_VERSION=master
 ARG THREAD_COUNT="-j8"
 
-RUN apt-get update -qq && \
-    adduser mangos && \
-    usermod -aG sudo mangos && \
-    apt install git sudo make cmake libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
+RUN apt update && apt upgrade && \
+    apt-get install sudo && \
+    useradd mangos && \
+    echo "mangos:mangos" | chpasswd && \
+    apt-get install git sudo make cmake libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
     cmake --version && \
     mkdir /home/mangos/sources && \
     mkdir /home/mangos/build && \
