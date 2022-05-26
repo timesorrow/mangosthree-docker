@@ -38,7 +38,9 @@ RUN cd /home/mangos/sources && \
     git clone https://github.com/mangosthree/server.git . --recursive --depth=1
 RUN cd /home/mangos/build && \
     cmake ../sources/ -DCMAKE_INSTALL_PREFIX=/opt/wow/install/mangos -DCONF_INSTALL_DIR=/opt/wow/install/mangos/conf
-
+RUN make -j4 
+USER root
+RUN make install
    
 CMD ["bash"]
     
