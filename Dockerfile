@@ -49,9 +49,13 @@ RUN apt install mysql-server -y && \
  
 RUN cd /home/mangos/db/ && \
     git clone https://github.com/mangoszero/database.git . --recursive --depth=1 && \
-    chmod +x InstallDatabases.sh && \
-    ./ InstallDatabases.sh && \
+    chmod u+x InstallDatabases.sh
+RUN cd /home/mangos/db/ && \    
+    ./InstallDatabases.sh && \
     echo "N" && \
-    
+    echo "" && \
+    echo "" && \
+    echo "" && \
+    echo "mangos" 
     
 CMD ["bash"]
