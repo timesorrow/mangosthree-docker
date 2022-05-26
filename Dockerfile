@@ -12,7 +12,7 @@ RUN apt update && apt upgrade -y && \
     cd /home/mangos && \
     mkdir /home/mangos/sources && \
     mkdir /home/mangos/build && \
-    mkdir /home/mangos/db
+    mkdir /home/mangos/db && \
     chown -R mangos:root sources && \
     chown -R mangos:root build && \
     chown -R mangos:root db && \
@@ -22,10 +22,11 @@ RUN apt update && apt upgrade -y && \
     chmod g+s wow && \
     cd /opt && \
     mkdir wow/install && mkdir wow/install/mangos && mkdir wow/install/mangos/bin && mkdir wow/install/mangos/bin/logs && mkdir wow/install/mangos/conf  && \
-    cd /opt/wow && mkdir gamedata && mkdir gamedata/1.12 && mkdir gamedata/1.12/mangos && \
+    cd /opt/wow && mkdir gamedata && mkdir gamedata/1.12 && mkdir gamedata/1.12/mangos
     
 USER mangos
-    cd /home/mangos/sources && \
+
+RUN cd /home/mangos/sources && \
     git clone https://github.com/mangosthree/server.git . --recursive --depth=1 
 
 CMD ["bash"]
