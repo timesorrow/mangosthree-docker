@@ -3,5 +3,5 @@ ARG MANGOS_SERVER_VERSION=master
 ARG THREAD_COUNT="-j8"
 
 RUN apt-get update -qq && \
-    cmake --version && \
+    cmake --version
     
