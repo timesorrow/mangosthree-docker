@@ -7,7 +7,16 @@ RUN apt update && apt upgrade -y && \
     adduser mangos && \
     echo "mangos:mangos" | chpasswd && \
     usermod -aG sudo mangos && \
-    apt-get install git sudo make cmake libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
+    apt-get install git sudo make libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
+    
+    wget http://www.cmake.org/files/v3.12/cmake-3.12.1.tar.gz  && \
+    tar -xvzf cmake-3.12.1.tar.gz && \
+    cd cmake-3.12.1/ && \
+    ./configure && \
+    make && \
+    ll /usr/local/bin/cmake* && \
+    make install  && \
+    update-alternatives --install /usr/bin/cmake cmake /usr/local/bin/cmake 1 --force && \
     cmake --version && \
     cd /home/mangos && \
     mkdir /home/mangos/sources && \
@@ -27,7 +36,9 @@ RUN apt update && apt upgrade -y && \
 USER mangos
 
 RUN cd /home/mangos/sources && \
-    git clone https://github.com/mangosthree/server.git . --recursive --depth=1 
-
+    git clone https://github.com/mangosthree/server.git . --recursive --depth=1 && \
+   cd /home/mangos/build && \
+   cmake ../sources/ -DCMAKE_INSTALL_PREFIX=/opt/wow/install/mangos -DCONF_INSTALL_DIR=/opt/wow/install/mangos/conf
+   
 CMD ["bash"]
     
