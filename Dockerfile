@@ -4,7 +4,7 @@ ARG THREAD_COUNT="-j8"
 
 RUN apt-get update -qq && \
     cmake --version && \
-    apt install git make libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
+    apt install git make cmake libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
     mkdir /home/mangos/sources && \
     mkdir /home/mangos/build && \
     mkdir /home/mangos/db && \
