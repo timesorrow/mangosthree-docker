@@ -4,8 +4,22 @@ ARG THREAD_COUNT="-j8"
 
 RUN apt-get update -qq && \
     cmake --version && \
-    apt-get install openssl libssl-dev -y && \
-    git clone https://github.com/mangosthree/server.git -b ${MANGOS_SERVER_VERSION} --recursive && \
-    cd server
+    apt install git make libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
+    mkdir /home/mangos/sources && \
+    mkdir /home/mangos/build && \
+    mkdir /home/mangos/db && \
     
+    sudo su && \
+    cd /opt/ && \
+    mkdir wow && \
+    chown -R mangos:root wow && \
+    chmod g+s wow && \
+    exit && \
+
+    cd /opt && \
+    mkdir wow/install && mkdir wow/install/mangos && mkdir wow/install/mangos/bin && mkdir wow/install/mangos/bin/logs && mkdir wow/install/mangos/conf  && \
+    cd /opt/wow && mkdir gamedata && mkdir gamedata/1.12 && mkdir gamedata/1.12/mangos && \
+    
+    cd /home/mangos/sources && \
+    git clone https://github.com/mangosthree/server.git . --recursive --depth=1
     
