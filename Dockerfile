@@ -1,4 +1,4 @@
-FROM celiangarcia/gcc7-cmake as builder
+FROM celiangarcia/gcc7-cmake:3.12.4 as builder
 ARG MANGOS_SERVER_VERSION=master
 ARG THREAD_COUNT="-j8"
 
