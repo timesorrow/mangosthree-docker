@@ -4,31 +4,29 @@ ARG THREAD_COUNT="-j8"
 
 RUN apt update && apt upgrade -y && \
     apt-get install sudo && \
-    useradd mangos && \
+    adduser mangos && \
     echo "mangos:mangos" | chpasswd && \
     usermod -aG sudo mangos && \
     apt-get install git sudo make cmake libssl-dev libbz2-dev build-essential default-libmysqlclient-dev libace-6.4.5 libace-dev python -y && \
     cmake --version && \
-    mkdir /home/mangos && \
+    cd /home/mangos && \
     mkdir /home/mangos/sources && \
     mkdir /home/mangos/build && \
-    mkdir /home/mangos/db && \
-    
-    sudo su && \
+    mkdir /home/mangos/db
+    chown -R mangos:root sources && \
+    chown -R mangos:root build && \
+    chown -R mangos:root db && \
     cd /opt/ && \
     mkdir wow && \
     chown -R mangos:root wow && \
     chmod g+s wow && \
-    exit && \
-
     cd /opt && \
     mkdir wow/install && mkdir wow/install/mangos && mkdir wow/install/mangos/bin && mkdir wow/install/mangos/bin/logs && mkdir wow/install/mangos/conf  && \
     cd /opt/wow && mkdir gamedata && mkdir gamedata/1.12 && mkdir gamedata/1.12/mangos && \
     
-    cd /home/mangos/sources && \
-    git clone https://github.com/mangosthree/server.git . --recursive --depth=1
-
-EXPOSE 80
 USER mangos
-RUN ["/bin/bash"]
+    cd /home/mangos/sources && \
+    git clone https://github.com/mangosthree/server.git . --recursive --depth=1 
+
+CMD ["bash"]
     
