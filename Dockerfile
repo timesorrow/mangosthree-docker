@@ -43,11 +43,13 @@ USER root
 RUN cd /home/mangos/build && \
     make install
 RUN apt install mysql-server -y && \
-    service mysql start   
-RUN mysql --execute "CREATE USER 'mangos'@'localhost' IDENTIFIED BY 'mangos';" && \
-    mysql --execute "GRANT ALL PRIVILEGES ON *.* TO 'mangos'@'localhost' WITH GRANT OPTION;" && \
-    mysql --execute "exit;"
+    service mysql start && \
+    mysql --execute "CREATE USER 'mangos'@'localhost' IDENTIFIED BY 'mangos';" && \
+    mysql --execute "GRANT ALL PRIVILEGES ON *.* TO 'mangos'@'localhost' WITH GRANT OPTION;"
+ 
+RUN cd /home/mangos/db/ && \
+    git clone https://github.com/mangoszero/database.git . --recursive --depth=1 && \
+    ./make_full_WorldDB.sh
     
-   
 CMD ["bash"]
     
