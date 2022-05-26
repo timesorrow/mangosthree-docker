@@ -35,7 +35,7 @@ RUN apt update && apt upgrade -y && \
 USER mangos
 
 RUN cd /home/mangos/sources && \
-    git clone https://github.com/mangosthree/server.git . --recursive --depth=1 && \
+    git clone https://github.com/mangosthree/server.git . --recursive --depth=1
 
    
 CMD ["bash"]
