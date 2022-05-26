@@ -49,7 +49,8 @@ RUN apt install mysql-server -y && \
  
 RUN cd /home/mangos/db/ && \
     git clone https://github.com/mangoszero/database.git . --recursive --depth=1 && \
-    git clone https://github.com/timesorrow/amngos-three-docker.git . --recursive --depth=1
+    mkdir script && \
+    git clone https://github.com/timesorrow/mangosthree-docker.git . --recursive --depth=1
     
 CMD ["bash"]
     
